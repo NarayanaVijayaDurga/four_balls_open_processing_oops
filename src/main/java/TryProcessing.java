@@ -1,15 +1,17 @@
+
 import processing.core.PApplet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TryProcessing extends PApplet{
 
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
     public static final int DIAMETER = 10;
+    private List<Circle> list = new ArrayList<>();
 
-    int ballA=0;
-    int ballB=0;
-    int ballC=0;
-    int ballD=0;
+
 
     public static void main(String[] args) {
         PApplet.main("TryProcessing",args);
@@ -21,29 +23,26 @@ public class TryProcessing extends PApplet{
     }
     @Override
     public void setup(){
-        //ellipse(WIDTH/2,HEIGHT/2,100,100);
+        super.setup();
+        Circle.setDiameter(DIAMETER);
+        Circle.setMaxHeight(HEIGHT);
+
+        for (int i=1; i<=4; i++)
+            list.add(new Circle(i));
     }
 
 
 
     @Override
     public void draw(){
-        //paintWhite();
-        drawCircle();
-        //super.draw();
+        for (Circle circle: list) {
+            ellipse(circle.getState(), circle.getHeight(), Circle.getDiameter(), Circle.getDiameter());
+        }
+        
     }
-    private void drawCircle(){
-        ellipse(ballA,HEIGHT/5, DIAMETER, DIAMETER);
-        ellipse(ballB,2*HEIGHT/5, DIAMETER, DIAMETER);
-        ellipse(ballC,3*HEIGHT/5, DIAMETER, DIAMETER);
-        ellipse(ballD,4*HEIGHT/5, DIAMETER, DIAMETER);
-        ballA+=1;
-        ballB+=2;
-        ballC+=3;
-        ballD+=4;
-    }
+
     private void paintWhite(){
-        background(255);
+       // background(255);
     }
 
 
